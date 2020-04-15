@@ -9,20 +9,15 @@ class Parser_dmik:
            'Accept':
            '*/*'}
 
+
     def __init__(self):
-        self._html = self._get_html()
         self._bsObj = self._create_bsObj()
 
 
-    def _get_html(self, url='http://dmik.ru/'):
-        r = requests.get(url, headers=HEADERS, params=params)
-        return r
-
-
-    def _create_bsObj(self, html_page):
+    def _create_bsObj(self, url='http://dmik.ru/'):
+        html_page = requests.get(url, headers=HEADERS, params=params)
         soup = BeautifulSoup(html_page.text, 'html.parser')
         return soup
-
 
     def parse_data(self, bsObj, tag: str, class_: str, quality_iter=None) -> list:
         parse_obj = bsObj.find_all('{}', class_="{}").format(tag, class_)
@@ -35,5 +30,6 @@ class Parser_dmik:
         else:
             for i in parse_obj:
                 data.append(date.get_text())
-    
+
         return data
+
