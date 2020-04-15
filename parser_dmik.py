@@ -1,5 +1,9 @@
 import requests
-from bs4 import BeautifulSoup4
+import dmik_db
+
+from bs4 import BeautifulSoup
+
+
 
 
 class Parser_dmik:
@@ -15,12 +19,12 @@ class Parser_dmik:
 
 
     def _create_bsObj(self, url='http://dmik.ru/'):
-        html_page = requests.get(url, headers=HEADERS, params=params)
+        html_page = requests.get(url, headers=self.HEADERS)
         soup = BeautifulSoup(html_page.text, 'html.parser')
         return soup
 
-    def parse_data(self, bsObj, tag: str, class_: str, quality_iter=None) -> list:
-        parse_obj = bsObj.find_all('{}', class_="{}").format(tag, class_)
+    def parse_data(self, tag: str, class_: str, quality_iter=None) -> list:
+        parse_obj = self._bsObj.find_all(tag, class_=class_)
         data = []
         if quality_iter:
             counter = 0
@@ -29,7 +33,32 @@ class Parser_dmik:
                 counter += 1
         else:
             for i in parse_obj:
-                data.append(date.get_text())
+                data.append(i.get_text())
 
         return data
+
+
+
+class Update:
+
+    def __init__(self):
+        self.data = self.get_dmik_data()
+
+    def get_dmik_data(self):
+        title = Parser_dmik().parse_data('a', 'name')
+        date = Parser_dmik().parse_data('a', 'date')
+        description = Parser_dmik().parse_data('p', '', len(title))
+        sort_data = ()
+        data = []
+        for i in range(len(title)):
+            sort_data = (title[i], date[i], description[i])
+            data.append(sort_data)
+        return data
+        
+    def add_to_base(self):
+        dmik_db.insert("dmik_info", self.data)
+        
+
+
+
 

@@ -28,6 +28,7 @@ def fetch_to_day():
     pass
 
 def fetch_all_day(table):
+    pass
     
 
 def get_cursor():
