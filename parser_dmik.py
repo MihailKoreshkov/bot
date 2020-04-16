@@ -1,5 +1,5 @@
 import requests
-import db
+import dmik_db
 from bs4 import BeautifulSoup
 
 
