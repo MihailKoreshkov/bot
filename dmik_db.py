@@ -8,12 +8,7 @@ cursor = conn.cursor()
 
 
 def insert(table: str, data: list):
-    placeholders = ', '.join("?" * len(data[0]))
-    cursor.executemany(
-        f"INSERT INTO {table}"
-        f"VALUES({placeholders})",
-        data
-    )
+    cursor.executemany(f"INSERT INTO {table} VALUES(?, ?, ?)", data)
     conn.commit()
     
 
