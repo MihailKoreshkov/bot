@@ -17,4 +17,4 @@ class Dmik_info:
         
 
 
-Dmik_info().all_films()
+
