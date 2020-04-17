@@ -51,22 +51,7 @@ class Parser_dmik:
 
     
   
-  
-  
-class Update_dmik:
-  
-    def __init__(self):
-        self.delete()
-        self.data = Parser_dmik().get_dmik_data()
-        self.add_to_base()
-  
 
-    def add_to_base(self):
-        db.insert("dmik_info", self.data)
-
-
-    def delete_data(self):
-        db.delete("dmik_info")
 
     
                  
