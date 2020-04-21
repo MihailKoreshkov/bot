@@ -14,7 +14,7 @@ class Update_dmik:
 
     def add_to_base(self):
         dmik_db.insert("dmik_info", self.anons)
-        dmik_db.insert("dmik_day_info",)
+        dmik_db.insert("dmik_day_info",self.films_to_day)
 
 
     def delete_data(self):

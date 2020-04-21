@@ -6,6 +6,6 @@ create table dmik_info(
 
 
 create table dmik_day_info(
-    date VARCHAR(255),
+    day_number VARCHAR(255),
     shedule VARCHAR(255)
 )
