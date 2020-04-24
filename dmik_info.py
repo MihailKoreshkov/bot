@@ -1,4 +1,5 @@
 import dmik_db
+frm datetime import datetime
 
 class Dmik_info:
 
@@ -6,7 +7,11 @@ class Dmik_info:
         pass
 
     def films_today(self):
-        pass
+        date = datetime.strftime(datetime.now(), '%d')
+        films = dmik_db.fetch_to_day(date, "dmik_day_info")
+        # надо добавить в метод Parser_dmik.get_dmik_films_to_day из <td id="CalendTD26" class="t0"><a class="typ2" title="">24</a></td>
+        # забрать число из айди календ и добавить его третим значением в таблицу dmik_day_info
+      
 
     def all_films(self):
         films = dmik_db.fetch_all_day("dmik_info")
