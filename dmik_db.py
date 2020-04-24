@@ -21,7 +21,9 @@ def delete(table):
 
 
 def fetch_to_day(date, table):
-    pass
+    cursor.execute(f"SELECT * FROM {table} WHERE date = {date})
+    data = cursor.fetchall()
+    return data
 
 def fetch_all_day(table):
     cursor.execute(f"SELECT * FROM {table}")
