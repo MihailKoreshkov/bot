@@ -19,6 +19,7 @@ class Update_dmik:
 
     def delete_data(self):
         dmik_db.delete("dmik_info")
+        dmik_db.delete("dmik_day_info")
 
 
 Update_dmik()
