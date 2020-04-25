@@ -11,11 +11,11 @@ class Dmik_info:
         films = dmik_db.fetch_to_day(date, "dmik_day_info")
         if len(films) == 2:
             if films[0][0] > films[1][0]:
-                print films[0][2]
+                print(films[0][2])
             else:
-                print films[1][2]
+                print(films[1][2])
         else:
-            print films[2]
+            print(films[2])
 
         
       
