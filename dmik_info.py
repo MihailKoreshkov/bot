@@ -1,5 +1,5 @@
 import dmik_db
-frm datetime import datetime
+from datetime import datetime
 
 class Dmik_info:
 
@@ -9,8 +9,15 @@ class Dmik_info:
     def films_today(self):
         date = datetime.strftime(datetime.now(), '%d')
         films = dmik_db.fetch_to_day(date, "dmik_day_info")
-        # надо добавить в метод Parser_dmik.get_dmik_films_to_day из <td id="CalendTD26" class="t0"><a class="typ2" title="">24</a></td>
-        # забрать число из айди календ и добавить его третим значением в таблицу dmik_day_info
+        if len(films) == 2:
+            if films[0][0] > films[1][0]:
+                print films[0][2]
+            else:
+                print films[1][2]
+        else:
+            print films[2]
+
+        
       
 
     def all_films(self):
@@ -22,4 +29,5 @@ class Dmik_info:
         
 
 
+Dmik_info().films_today()
 
