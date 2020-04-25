@@ -15,6 +15,7 @@ class Parser_dmik:
   
     def __init__(self):
         self._bsObj = self._create_bsObj()
+        self._number_of_days = self._parse_calend_number
   
   
     def _create_bsObj(self, url='http://dmik.ru/'):
@@ -40,10 +41,19 @@ class Parser_dmik:
         return data
 
 
+    def _parse_calend_number(self):
+        pattern = re.compile("CalendTD")
+        parse_obj = self._bsObj.find_all(id=pattern)
+        data = []
+        for i in range(len(parse_obj)):
+            data.append(i)
+        return data
+
+
     def get_dmik_anons(self):
         title = self.parse('a', 'name')
         date = self.parse('a', 'date')
-        description = self.parse('p', len(title))
+        description = self.parse('p', quality_iter = len(title))
         sort_data = ()
         data = []
         for i in range(len(title)):
@@ -55,13 +65,17 @@ class Parser_dmik:
     def get_dmik_films_to_day(self):
         pattern = re.compile("typ")
         data = self.parse('a', pattern=pattern)
+        number = self._number_of_days()
         sort_data = ()
         day_shedule = []
         for i in range(len(data)):
-            sort_data = (data[i].text, data[i].get('title'))
+            sort_data = (number[i], data[i].text, data[i].get('title'))
             day_shedule.append(sort_data)
         return day_shedule
-        
+
+
+
+
 
 
 
