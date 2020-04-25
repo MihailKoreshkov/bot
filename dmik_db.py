@@ -8,8 +8,7 @@ cursor = conn.cursor()
 
 
 def insert(table: str, data: list):
-    placeholders = ', '.join('?' * data[0])
-    cursor.executemany(f"INSERT INTO {table} VALUES({placeholders})", data)
+    cursor.executemany(f"INSERT INTO {table} VALUES(?, ?, ?)", data)
     conn.commit()
     
 
@@ -21,7 +20,7 @@ def delete(table):
 
 
 def fetch_to_day(date, table):
-    cursor.execute(f"SELECT * FROM {table} WHERE date = {date})
+    cursor.execute(f"SELECT * FROM {table} WHERE day_number = {date}")
     data = cursor.fetchall()
     return data
 
