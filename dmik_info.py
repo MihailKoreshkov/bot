@@ -29,5 +29,3 @@ class Dmik_info:
         
 
 
-Dmik_info().films_today()
-
