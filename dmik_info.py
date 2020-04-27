@@ -15,7 +15,7 @@ class Dmik_info:
             else:
                 print(films[1][2])
         else:
-            print(films[2])
+            print(films[0][2])
 
         
       
